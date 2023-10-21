@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 @Entity
 @Getter
 @Setter
@@ -17,7 +19,10 @@ public class Question {
     @EqualsAndHashCode.Include
     private int id;
     private String questionText;
-    private boolean response;
+    private Boolean response;
+    private ArrayList<Boolean> responses;
     private String username;
     private String pollTitle;
+    private int pollId;
+
 }

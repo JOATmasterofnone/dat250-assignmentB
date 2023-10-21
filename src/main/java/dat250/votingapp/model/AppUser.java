@@ -1,6 +1,7 @@
 package dat250.votingapp.model;
 
 import jakarta.persistence.*;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,9 +27,11 @@ public class AppUser {
     private String password;
 
     @OneToMany
-    private List<Poll> polls;
+    private List<Poll> ownedPolls;
 
-    // Constructors
+    @ManyToMany
+    private List<Poll> enteredPolls;
+
 
 
 }
