@@ -1,6 +1,6 @@
 package dat250.votingapp.controller;
 
-import dat250.votingapp.model.AppUserOrig;
+import dat250.votingapp.model.AppUser;
 import dat250.votingapp.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +18,13 @@ public class AppUserController {
     private AppUserRepository appUserRepository;
 
     @GetMapping
-    public List<AppUserOrig> getAllAppUsers() {
+    public List<AppUser> getAllAppUsers() {
         return appUserRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AppUserOrig> getAppUserById(@PathVariable int id) {
-        Optional<AppUserOrig> appUser = appUserRepository.findById(id);
+    public ResponseEntity<AppUser> getAppUserById(@PathVariable int id) {
+        Optional<AppUser> appUser = appUserRepository.findById(id);
         if (appUser.isPresent()) {
             return ResponseEntity.ok(appUser.get());
         } else {
@@ -33,13 +33,13 @@ public class AppUserController {
     }
 
     @PostMapping
-    public AppUserOrig createAppUser(@RequestBody AppUserOrig appUser) {
+    public AppUser createAppUser(@RequestBody AppUser appUser) {
         return appUserRepository.save(appUser);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AppUserOrig> updateAppUser(@PathVariable int id, @RequestBody AppUserOrig updatedAppUser) {
-        Optional<AppUserOrig> appUser = appUserRepository.findById(id);
+    public ResponseEntity<AppUser> updateAppUser(@PathVariable int id, @RequestBody AppUser updatedAppUser) {
+        Optional<AppUser> appUser = appUserRepository.findById(id);
         if (appUser.isPresent()) {
             updatedAppUser.setId(id);
             return ResponseEntity.ok(appUserRepository.save(updatedAppUser));
@@ -50,7 +50,7 @@ public class AppUserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAppUser(@PathVariable int id) {
-        Optional<AppUserOrig> appUser = appUserRepository.findById(id);
+        Optional<AppUser> appUser = appUserRepository.findById(id);
         if (appUser.isPresent()) {
             appUserRepository.delete(appUser.get());
             return ResponseEntity.ok().build();
