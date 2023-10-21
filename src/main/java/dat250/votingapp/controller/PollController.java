@@ -32,6 +32,16 @@ public class PollController {
         }
     }
 
+    @GetMapping("/{pollTitle}")
+    public ResponseEntity<Poll> getPollByTitle(@PathVariable String pollTitle) {
+        Optional<Poll> poll = pollRepository.findByTitle(pollTitle);
+        if (poll.isPresent()) {
+            return ResponseEntity.ok(poll.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
     public Poll createPoll(@RequestBody Poll poll) {
         return pollRepository.save(poll);

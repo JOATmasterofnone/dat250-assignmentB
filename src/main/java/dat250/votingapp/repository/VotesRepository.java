@@ -1,7 +1,7 @@
 package dat250.votingapp.repository;
 
-import dat250.votingapp.model.Question;
+import dat250.votingapp.model.PollQuestion;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface VotesRepository extends JpaRepository<Question, Integer> {
+public interface VotesRepository extends JpaRepository<PollQuestion, Integer> {
 }

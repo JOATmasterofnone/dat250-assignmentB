@@ -1,7 +1,6 @@
 package dat250.votingapp.model;
 
 import jakarta.persistence.*;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,13 +25,28 @@ public class AppUser {
 
     private String password;
 
+    private Boolean isVerified = false;
+
     @OneToMany
     private List<Poll> ownedPolls;
 
     @ManyToMany
     private List<Poll> enteredPolls;
 
+    public void addOwnedPoll(Poll newOwnedPoll){
+        ownedPolls.add((newOwnedPoll));
+    };
 
+    public void removeOwnedPoll(Poll toBeRemovedPoll){
+        ownedPolls.remove(toBeRemovedPoll);
+    }
+
+    public void addEnteredPoll(Poll newEnteredPoll){
+        enteredPolls.add(newEnteredPoll);
+    }
+
+    public void removedEnteredPoll(Poll toBeDeletedPoll){
+        enteredPolls.remove(toBeDeletedPoll);
+    }
 
 }
-
